@@ -5,41 +5,25 @@ void draw_board(int a[3][3])
 {
     cout << '\n';
 
-    for(int i = 0; i < 3; ++i){
-        cout << a[0][i];
-        if(i != 2){
-            cout << " | ";
+    for(int y = 0; y < 3; ++y){
+        for(int x = 0; x < 3; ++x){
+            cout << a[y][x];
+            if(x != 2){
+                cout << " | ";
+            }
+            else{
+                cout << " ";
+            }
+        }
+        if(y != 2){
+            cout << '\n' << "----------" << '\n';
         }
         else{
-            cout << " ";
+            cout << '\n';
         }
     }
 
-    cout << '\n' << "----------" << '\n';
-
-    for(int i = 0; i < 3; ++i){
-        cout << a[1][i];
-        if(i != 2){
-            cout << " | ";
-        }
-        else{
-            cout << " ";
-        }
-    }
-
-    cout << '\n' << "----------" << '\n';
-
-    for(int i = 0; i < 3; ++i){
-        cout << a[2][i];
-        if(i != 2){
-            cout << " | ";
-        }
-        else{
-            cout << " ";
-        }
-    }
-
-    cout << "\n\n";
+    cout << '\n';
 }
 
 int main()
