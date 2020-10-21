@@ -1,20 +1,12 @@
 #include <iostream>
 using namespace std;
 
-const int empty = 0;
-const int   x   = 1;
-const int   o   = 2;
-
-int gameboard[3][3] = {{empty, empty, empty},
-                       {empty, empty, empty},
-                       {empty, empty, empty}};
-
-void draw_board()
+void draw_board(int a[3][3])
 {
     cout << '\n';
 
     for(int i = 0; i < 3; ++i){
-        cout << gameboard[0][i];
+        cout << a[0][i];
         if(i != 2){
             cout << " | ";
         }
@@ -26,7 +18,7 @@ void draw_board()
     cout << '\n' << "----------" << '\n';
 
     for(int i = 0; i < 3; ++i){
-        cout << gameboard[1][i];
+        cout << a[1][i];
         if(i != 2){
             cout << " | ";
         }
@@ -38,7 +30,7 @@ void draw_board()
     cout << '\n' << "----------" << '\n';
 
     for(int i = 0; i < 3; ++i){
-        cout << gameboard[2][i];
+        cout << a[2][i];
         if(i != 2){
             cout << " | ";
         }
@@ -52,5 +44,12 @@ void draw_board()
 
 int main()
 {
-    draw_board();
+    const int empty = 0;
+    const int   x   = 1;
+    const int   o   = 2;
+
+    int gameboard[3][3] = {{empty, empty, empty},
+                           {empty, empty, empty},
+                           {empty, empty, empty}};
+    draw_board(gameboard);
 }
