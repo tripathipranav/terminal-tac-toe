@@ -1,12 +1,56 @@
 #include <iostream>
 using namespace std;
 
-/*
-    Board Layout
+const int empty = 0;
+const int   x   = 1;
+const int   o   = 2;
 
-     1 | 2 | 3
-     ---------
-     4 | 5 | 6
-     ---------
-     7 | 8 | 9  
-*/
+int gameboard[3][3] = {{empty, empty, empty},
+                       {empty, empty, empty},
+                       {empty, empty, empty}};
+
+void draw_board()
+{
+    cout << '\n';
+
+    for(int i = 0; i < 3; ++i){
+        cout << gameboard[0][i];
+        if(i != 2){
+            cout << " | ";
+        }
+        else{
+            cout << " ";
+        }
+    }
+
+    cout << '\n' << "----------" << '\n';
+
+    for(int i = 0; i < 3; ++i){
+        cout << gameboard[1][i];
+        if(i != 2){
+            cout << " | ";
+        }
+        else{
+            cout << " ";
+        }
+    }
+
+    cout << '\n' << "----------" << '\n';
+
+    for(int i = 0; i < 3; ++i){
+        cout << gameboard[2][i];
+        if(i != 2){
+            cout << " | ";
+        }
+        else{
+            cout << " ";
+        }
+    }
+
+    cout << "\n\n";
+}
+
+int main()
+{
+    draw_board();
+}
