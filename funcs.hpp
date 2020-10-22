@@ -4,7 +4,6 @@ using namespace std;
 void draw_board(int a[3][3])
 {
     cout << '\n';
-
     for(int y = 0; y < 3; ++y){
         for(int x = 0; x < 3; ++x){
             cout << a[y][x];
@@ -22,6 +21,5 @@ void draw_board(int a[3][3])
             cout << '\n';
         }
     }
-
     cout << '\n';
 }
