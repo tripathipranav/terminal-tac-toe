@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-void draw_board(const int (&a)[3][3])
+void draw_board(const char (&a)[3][3])
 {
     cout << '\n';
     for(int y = 0; y < 3; ++y){
@@ -24,140 +24,16 @@ void draw_board(const int (&a)[3][3])
     cout << '\n';
 }
 
-void player_turn(int a[3][3])
+void player_turn(char a[3][3])
 {
-    int temp_var = 0;
+    int x_choice, y_choice;
     cout << "Which square? ";
-    cin >> temp_var;
-
-    switch(temp_var){
-        case 1:
-            if (a[0][0] == 0){
-                a[0][0] += 1;
-            }
-            break;
-
-        case 2:
-            if (a[0][1] == 0){
-                a[0][1] += 1;
-            }
-            break;
-
-        case 3:
-            if (a[0][2] == 0){
-                a[0][2] += 1;
-            }
-            break;
-
-        case 4:
-            if (a[1][0] == 0){
-                a[1][0] += 1;
-            }
-            break;
-
-        case 5:
-            if (a[1][1] == 0){
-                a[1][1] += 1;
-            }
-            break;
-
-        case 6:
-            if (a[1][2] == 0){
-                a[1][2] += 1;
-            }
-            break;
-
-        case 7:
-            if (a[2][0] == 0){
-                a[2][0] += 1;
-            }
-            break;
-
-        case 8:
-            if (a[2][1] == 0){
-                a[2][1] += 1;
-            }
-            break;
-
-        case 9:
-            if (a[2][2] == 0){
-                a[2][2] += 1;
-            }
-            break;
-
-        default:
-            cout << "invalid entry!";
-            player_turn(a);
-            break;
+    cin >> x_choice >> y_choice;
+    if(a[x_choice][y_choice] == ' '){
+        a[x_choice][y_choice] = 'x';
     }
-}
-
-void cpu_turn(int (&a)[3][3])
-{
-    int temp_var = rand() % 9 + 1;
-
-    switch(temp_var){
-        case 1:
-            if (a[0][0] == 0){
-                a[0][0] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 2:
-            if (a[0][1] == 0){
-                a[0][1] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 3:
-            if (a[0][2] == 0){
-                a[0][2] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 4:
-            if (a[1][0] == 0){
-                a[1][0] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 5:
-            if (a[1][1] == 0){
-                a[1][1] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 6:
-            if (a[1][2] == 0){
-                a[1][2] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 7:
-            if (a[2][0] == 0){
-                a[2][0] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 8:
-            if (a[2][1] == 0){
-                a[2][1] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
-
-        case 9:
-            if (a[2][2] == 0){
-                a[2][2] += 2;
-            }
-            else {cpu_turn(a);}
-            break;
+    else{
+        cout << "Square already in use! Please try again.\n\n";
+        player_turn(a);
     }
 }

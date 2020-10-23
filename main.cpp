@@ -2,14 +2,13 @@
 
 int main()
 {
-    const int empty = 0;
-    const int   x   = 1;
-    const int   o   = 2;
-    int gameboard[3][3] = {{empty, empty, empty},
+    const char empty = ' ';
+    const char   x   = 'x';
+    const char   o   = 'o';
+    char gameboard[3][3] = {{empty, empty, empty},
                            {empty, empty, empty},
                            {empty, empty, empty}};
     draw_board(gameboard);
     player_turn(gameboard);
-    cpu_turn(gameboard);
     draw_board(gameboard);
 }
