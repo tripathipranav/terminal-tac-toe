@@ -52,12 +52,9 @@ void cpu_turn(char a[3][3])
 
 int main()
 {
-    const char empty = ' ';
-    const char   x   = 'x';
-    const char   o   = 'o';
-    char gameboard[3][3] = {{empty, empty, empty},
-                           {empty, empty, empty},
-                           {empty, empty, empty}};
+    char gameboard[3][3] = {{' ', ' ', ' '},
+                           {' ', ' ', ' '},
+                           {' ', ' ', ' '}};
 
     //FOR DEBUG:
     draw_board(gameboard);
