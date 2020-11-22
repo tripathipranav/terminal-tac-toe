@@ -34,7 +34,7 @@ void player_turn(char a[3][3])
         a[x_choice][y_choice] = 'x';
     }
     else{
-        cerr << "Square already in use! Please try again.\n";
+        cout << "Square already in use! Please try again.\n";
         player_turn(a);
     }
 }
@@ -55,13 +55,4 @@ int main()
     char gameboard[3][3] = {{' ', ' ', ' '},
                            {' ', ' ', ' '},
                            {' ', ' ', ' '}};
-
-    //FOR DEBUG:
-    draw_board(gameboard);
-    player_turn(gameboard);
-    cpu_turn(gameboard);
-    draw_board(gameboard);
-    player_turn(gameboard);
-    cpu_turn(gameboard);
-    draw_board(gameboard);
-}
+}   
