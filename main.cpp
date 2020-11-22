@@ -34,7 +34,7 @@ void player_turn(char a[3][3])
         a[x_choice][y_choice] = 'x';
     }
     else{
-        cout << "Square already in use! Please try again.\n";
+        cerr << "Square already in use! Please try again.\n";
         player_turn(a);
     }
 }
