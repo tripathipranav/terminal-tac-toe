@@ -50,9 +50,18 @@ void cpu_turn(char a[3][3])
     else{cpu_turn(a);}
 }
 
+void cycle(const char (&a)[3][3])
+{
+     for(int y = 0; y < 3; ++y){
+        for(int x = 0; x < 3; ++x){
+            cout << a[y][x];
+        }
+    }
+}
+
 int main()
 {
     char gameboard[3][3] = {{' ', ' ', ' '},
                            {' ', ' ', ' '},
                            {' ', ' ', ' '}};
-}   
+}
