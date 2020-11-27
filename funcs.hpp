@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+void cycle(char a[3][3]);
 void draw_board(char a[3][3])
 {
     cout << '\n';
@@ -22,6 +23,7 @@ void draw_board(char a[3][3])
         }
     }
     cout << '\n';
+    cycle(a);
 }
 
 void cpu_turn(char a[3][3])
@@ -33,6 +35,7 @@ void cpu_turn(char a[3][3])
         a[x_choice][y_choice] = 'o';
     }
     else{cpu_turn(a);}
+    draw_board(a);
 }
 
 void player_turn(char a[3][3])
