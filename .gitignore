@@ -32,5 +32,6 @@
 *.app
 
 #Editor/IDE Files
+*.swp
 /.vs
 /.vscode
