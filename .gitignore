@@ -33,5 +33,6 @@
 
 #Editor/IDE Files
 *.swp
+*.vim
 /.vs
 /.vscode
