@@ -2,7 +2,7 @@
 using namespace std;
 
 void cycle(char a[3][3]);
-void draw_board(char a[3][3])
+void draw_board(char a[3][3]) //draw board, start turn cycle
 {
     cout << '\n';
     for(int y = 0; y < 3; ++y){
@@ -18,14 +18,14 @@ void draw_board(char a[3][3])
     cycle(a);
 }
 
-void cpu_turn(char a[3][3])
+void cpu_turn(char a[3][3]) //rewrite with actual logic later
 {
     int x = rand() % 3, y = rand() % 3;
     if(a[x][y] == ' '){a[x][y] = 'o'; draw_board(a);}
     else{cpu_turn(a);}
 }
 
-void player_turn(char a[3][3])
+void player_turn(char a[3][3]) //rewrite to use numbers 1-9 
 {
     int x, y;
     cout << "Which square? ";
@@ -38,7 +38,7 @@ void player_turn(char a[3][3])
     cpu_turn(a);
 }
 
-void cycle(char a[3][3])
+void cycle(char a[3][3]) //check if there are empty squares, if so continue cycle
 {
     int i = 0;
     for(int y = 0; y < 3; ++y){
@@ -52,7 +52,7 @@ void cycle(char a[3][3])
     else if(i == 0){ draw_board(a); cout << "Game over!"; }
 }
 
-int main()
+int main() //init array and start cycle
 {
     char gameboard[3][3] = {{' ', ' ', ' '},
                            {' ', ' ', ' '},
