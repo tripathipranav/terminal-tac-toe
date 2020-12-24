@@ -37,8 +37,12 @@ void player_turn(char a[3][3])
         case 3: a[0][2] = 'x'; break; case 4: a[1][0] = 'x'; break;
         case 5: a[1][1] = 'x'; break; case 6: a[1][2] = 'x'; break;
         case 7: a[2][0] = 'x'; break; case 8: a[2][1] = 'x'; break;
-        case 9: a[2][2] = 'x'; break; default: cout << "Invalid entry!\n";
-        player_turn(a);
+        case 9: a[2][2] = 'x'; break; 
+        
+        default: 
+            cout << "Invalid entry!\n";
+            player_turn(a);
+            break;
     }
     draw_board(a);
 }
@@ -46,6 +50,15 @@ void player_turn(char a[3][3])
 //Initialize array, pass to function
 int main()
 {
+    //Greeting + selection instructions
+    cout << "Terminal Tac Toe v0.3 - Pranav Tripathi\n\n";
+    cout << "Squares are numbered as follows:\n" <<
+    "1 | 2 | 3\n" << "----------\n" << "4 | 5 | 6\n" <<
+    "----------\n" << "7 | 8 | 9\n\n";
+    cout << "Press ENTER to begin.";
+    cin.ignore();
+    cout << "\n\n";
+
     char gameboard[3][3] = {{' ', ' ', ' '},
                            {' ', ' ', ' '},
                            {' ', ' ', ' '}};
