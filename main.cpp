@@ -1,61 +1,54 @@
+/* 
+Terminal Tac Toe - v0.3
+Pranav Tripathi
+
+TODO:
+- Add logic to CPU's turn
+- Add # labels to grid
+- Main turn loop
+- Stop cycle when board is full, declare tie
+- Declare winner when three in a row
+*/
+
 #include <iostream>
 using namespace std;
 
-void cycle(char a[3][3]);
-void draw_board(char a[3][3]) //draw board, start turn cycle
+//Declare funcs - can be called universally
+void draw_board(char a[3][3]);
+void player_turn(char a[3][3]);
+
+//Draw grid and pass array to player func
+void draw_board(char a[3][3])
 {
-    cout << '\n';
-    for(int y = 0; y < 3; ++y){
-        for(int x = 0; x < 3; ++x){
-            cout << a[y][x];
-            if(x != 2){cout << " | ";}
-            else{cout << " ";}
-        }
-        if(y != 2){cout << '\n' << "----------" << '\n';}
-        else{cout << '\n';}
-    }
-    cout << '\n';
-    cycle(a);
+    cout << a[0][0] << " | " << a[0][1] << " | " << a[0][2]
+    << '\n' << "----------"
+    << '\n' << a[1][0] << " | " << a[1][1] << " | " << a[1][2]
+    << '\n' << "----------"
+    << '\n' << a[2][0] << " | " << a[2][1] << " | " << a[2][2]
+    << '\n';
 }
 
-void cpu_turn(char a[3][3]) //rewrite with actual logic later
+//Get square from player, add x to array
+void player_turn(char a[3][3])
 {
-    int x = rand() % 3, y = rand() % 3;
-    if(a[x][y] == ' '){a[x][y] = 'o'; draw_board(a);}
-    else{cpu_turn(a);}
-}
-
-void player_turn(char a[3][3]) //rewrite to use numbers 1-9 
-{
-    int x, y;
-    cout << "Which square? ";
-    cin >> x >> y;
-    if(a[x][y] == ' ' && x < 3 && x > -1 && y < 3 && y > -1){a[x][y] = 'x';}
-    else{
-        cout << "Square already in use! Please try again.\n";
+    cout << "Enter square number: "; int choice; cin >> choice;
+    switch(choice){
+        case 1: a[0][0] = 'x'; break; case 2: a[0][1] = 'x'; break;
+        case 3: a[0][2] = 'x'; break; case 4: a[1][0] = 'x'; break;
+        case 5: a[1][1] = 'x'; break; case 6: a[1][2] = 'x'; break;
+        case 7: a[2][0] = 'x'; break; case 8: a[2][1] = 'x'; break;
+        case 9: a[2][2] = 'x'; break; default: cout << "Invalid entry!\n";
         player_turn(a);
     }
-    cpu_turn(a);
+    draw_board(a);
 }
 
-void cycle(char a[3][3]) //check if there are empty squares, if so continue cycle
-{
-    int i = 0;
-    for(int y = 0; y < 3; ++y){
-        for(int x = 0; x < 3; ++x){
-            if(a[x][y] == ' '){
-                i++;
-            }
-        }
-    }
-    if(i > 0){player_turn(a);}
-    else if(i == 0){ draw_board(a); cout << "Game over!"; }
-}
-
-int main() //init array and start cycle
+//Initialize array, pass to function
+int main()
 {
     char gameboard[3][3] = {{' ', ' ', ' '},
                            {' ', ' ', ' '},
                            {' ', ' ', ' '}};
-    cycle(gameboard);
+    draw_board(gameboard);
+    player_turn(gameboard);
 }
