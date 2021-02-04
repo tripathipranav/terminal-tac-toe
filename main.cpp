@@ -49,72 +49,124 @@ void player_turn(char (&a)[3][3])
     cout << '\n';
 }
 
-//Check lines and attempt to win
+int scan_row(const char (&a)[3][3], int x)
+{
+    int n1 = 0, n2 = 0;
+    for(int i = 0; i < 3; ++i){
+        if(a[x][i] == 'x') ++n1;
+        if(a[x][i] == 'o') ++n2;
+    }
+    if(n2 == 2){
+        for(int i = 0; i < 3; ++i){
+        if(a[x][i] == ' ') return i;
+        }
+    } 
+    else if(n1 == 2){
+        for(int i = 0; i < 3; ++i){
+        if(a[x][i] == ' ') return i;
+        }
+    } 
+    return 999;
+}
+
+int scan_col(const char (&a)[3][3], int y)
+{
+    int n1 = 0, n2 = 0;
+    for(int i = 0; i < 3; ++i){
+        if(a[i][y] == 'x') ++n1;
+        if(a[i][y] == 'o') ++n2;
+    }
+    if(n2 == 2){
+        for(int i = 0; i < 3; ++i){
+        if(a[i][y] == ' ') return i;
+        }
+    }
+    else if(n1 == 2){
+        for(int i = 0; i < 3; ++i){
+        if(a[i][y] == ' ') return i;
+        }
+    }
+    return 999;
+}
+
+pair<int, int> scan_diag1(const char (&a)[3][3])
+{
+    int n1 = 0, n2 = 0;
+    for(int x = 0, y = 0; x < 3 && y < 3; ++x, ++y){
+        if(a[x][y] == 'x') ++n1;
+        if(a[x][y] == 'o') ++n2;
+    }
+    if(n2 == 2){
+        for(int x = 0, y = 0; x < 3 && y < 3; ++x, ++y){
+            if(a[x][y] == ' ') return make_pair(x, y);
+        }
+    }
+    else if(n1 == 2){
+        for(int x = 0, y = 0; x < 3 && y < 3; ++x, ++y){
+            if(a[x][y] == ' ') return make_pair(x, y);
+        }
+    }
+    return make_pair(999, 999);
+}
+
+pair<int, int> scan_diag2(const char (&a)[3][3])
+{
+    int n1 = 0, n2 = 0;
+    for(int x = 0, y = 2; x < 3 && y < 3; ++x, --y){
+        if(a[x][y] == 'x') ++n1;
+        if(a[x][y] == 'o') ++n2;
+    }
+    if(n2 == 2){
+        for(int x = 0, y = 2; x < 3 && y < 3; ++x, --y){
+            if(a[x][y] == ' ') return make_pair(x, y);
+        }
+    }
+    else if(n1 == 2){
+        for(int x = 0, y = 2; x < 3 && y < 3; ++x, --y){
+            if(a[x][y] == ' ') return make_pair(x, y);
+        }
+    }
+    return make_pair(999, 999);
+}
+
+pair<int, int> random_square(const char (&a)[3][3])
+{
+    int x = rand() % 3;
+    int y = rand() % 3;
+    if(a[x][y] == ' ') return make_pair(x, y);
+    else{random_square(a);}
+}
+
 void cpu_turn(char (&a)[3][3])
 {
-    vector<int> winning_xcoords;
-    vector<int> winning_ycoords;
-    vector<int> losing_xcoords;
-    vector<int> losing_ycoords;
-
     for(int x = 0; x < 3; ++x){
-        int Os = 0;
-        int Xs = 0;
-        for(int y = 0; y < 3; ++y){
-            if(a[x][y] == 'o'){
-                ++Os;
-            }
-            else if(a[x][y] == 'x'){
-                ++Xs;
-            }
+        int y = scan_row(a, x);
+        if(y != 999){
+            a[x][y] = 'o';
+            return;
         }
-        if(Os > 1){winning_xcoords.push_back(x);}
-        if(Xs > 1){losing_xcoords.push_back(x);}
     }
-
     for(int y = 0; y < 3; ++y){
-        int Os = 0;
-        int Xs = 0;
-        for(int x = 0; x < 3; ++x){
-                if(a[x][y] == 'o'){
-                ++Os;
-            }
-            else if(a[x][y] == 'x'){
-                ++Xs;
-            }
+        int x = scan_col(a, y);
+        if(x != 999){
+            a[x][y] = 'o';
+            return;
         }
-        if(Os == 1){winning_ycoords.push_back(y);}
-        if(Xs == 1){losing_ycoords.push_back(y);}
+    }
+    pair<int, int> dia1 = scan_diag1(a);
+    if(dia1.first != 999 && dia1.second != 999){
+        a[dia1.first][dia1.second] = 'o';
+        return;
+    }
+    pair<int, int> dia2 = scan_diag2(a);
+    if(dia2.first != 999 && dia2.second != 999){
+        a[dia2.first][dia2.second] = 'o';
+        return;
     }
 
-    if(winning_xcoords.size() != 0){
-        int coord = winning_xcoords[0];
-        for(int y = 0; y < 3; ++y){
-            if(a[winning_xcoords[0]][y] == ' '){a[winning_xcoords[0]][y] = 'o';}
-        }
-    }
-    else if(winning_ycoords.size() != 0){
-        int coord = winning_ycoords[0];
-        for(int x = 0; x < 3; ++x){
-            if(a[x][winning_ycoords[0]] == ' '){a[x][winning_ycoords[0]] = 'o';}
-        }
-    }
-    else if(losing_xcoords.size() != 0){
-        int coord = losing_xcoords[0];
-        for(int y = 0; y < 3; ++y){
-            if(a[losing_xcoords[0]][y] == ' '){a[losing_xcoords[0]][y] = 'o';}
-        }
-    }
-    else if(losing_ycoords.size() != 0){
-        int coord = losing_ycoords[0];
-        for(int x = 0; x < 3; ++x){
-            if(a[x][losing_ycoords[0]] == ' '){a[x][losing_ycoords[0]] = 'o';}
-        }
-    }
-    else if(winning_xcoords.size() == 0 && winning_ycoords.size() == 0 
-    && losing_xcoords.size() == 0 && losing_ycoords.size() == 0){
-        cout << "no good moves";
-    }
+    pair<int, int> random = random_square(a);
+    a[random.first][random.second] = 'o';
+    return;
 }
 
 //Initialize array, pass to function
