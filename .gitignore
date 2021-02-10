@@ -31,6 +31,6 @@
 *.out
 *.app
 
-#Editor/IDE/Misc Files
+#Editor Files
 /.vscode
-testfile.cpp
+/.vs
